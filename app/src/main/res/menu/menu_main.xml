@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.frozenbrain.fiimateriale.MainActivity">
 
-    <item android:id="@+id/searchView"
-        android:title="Title"
+    <item
+        android:id="@+id/action_search"
+        android:title="ldasmlsda"
         android:icon="@drawable/ic_search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom"/>
 
 <!--    <item-->
 <!--        android:id="@+id/action_settings"-->

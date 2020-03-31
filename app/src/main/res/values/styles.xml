@@ -18,13 +18,44 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="DarkTheme"  parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#1F1F1F</item>
-        <item name="colorPrimaryDark">#000</item>
-        <item name="colorAccent">#E91E63</item>
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
+        <item name="colorAccent">@color/darkAccent</item>
         <item name="background">@color/darkBackground</item>
         <item name="backgroundColor">@color/darkBackground</item>
         <item name="android:windowBackground">@color/darkBackground</item>
         <item name="android:textColor">#FFF</item>
+        <item name="android:backgroundTint">@color/darkPrimary</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="MaterialSearchViewStyle">
+        <!-- Background for the search bar -->
+        <item name="searchBackground">@color/darkPrimary</item>
+
+        <!-- Change voice icon -->
+        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+
+        <!-- Change clear text icon -->
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
+
+        <!-- Change up icon -->
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
+
+        <!-- Change icon for the suggestions -->
+        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+
+        <!-- Change background for the suggestions list view -->
+        <item name="searchSuggestionBackground">@android:color/white</item>
+
+        <!-- Change text color for edit text. This will also be the color of the cursor -->
+        <item name="android:textColor">#FFF</item>
+
+        <!-- Change hint text color for edit text -->
+        <item name="android:textColorHint">@color/darkAccent</item>
+
+        <!-- Hint for edit text -->
+        <item name="android:hint">@string/search_hint</item>
     </style>
 
 </resources>
