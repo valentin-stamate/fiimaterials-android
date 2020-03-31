@@ -1,9 +1,9 @@
-package com.frozenbrain.fiimateriale
+package com.frozenbrain.fiimateriale.semester
 
 import android.os.Parcel
 import android.os.Parcelable
 
-class Semester(var name: String, var dataURL: String): Parcelable {
+class Semester(val name: String, val dataURL: String): Parcelable {
     constructor(parcel: Parcel): this(
         parcel.readString() as String,
         parcel.readString() as String

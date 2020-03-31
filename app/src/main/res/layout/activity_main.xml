@@ -29,8 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="First Year"
-            android:textSize="36dp"/>
+            android:text="@string/first_year"
+            android:textSize="36sp"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -40,6 +40,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/cardBackground"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +55,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/cardBackground"
         app:layout_constraintEnd_toStartOf="@+id/yearOneRight"
