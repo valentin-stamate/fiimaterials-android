@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "887119686242",
+    "firebase_url": "https://fiimateriale.firebaseio.com",
+    "project_id": "fiimateriale",
+    "storage_bucket": "fiimateriale.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887119686242:android:481e9744e3491bc8c1bf3b",
+        "android_client_info": {
+          "package_name": "com.frozenbrain.fiimateriale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887119686242-jvsbapa7m59e7ck6argtflh1084na9i6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ55RlRejoO_NSpRtlmjSErgy_IIM1AGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887119686242-jvsbapa7m59e7ck6argtflh1084na9i6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

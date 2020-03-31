@@ -21,11 +21,15 @@
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
         <item name="colorAccent">@color/darkAccent</item>
+
         <item name="background">@color/darkBackground</item>
+        <item name="backgroundTint">@color/darkPrimary</item>
+
+        <item name="android:gravity">center</item>
+
         <item name="backgroundColor">@color/darkBackground</item>
         <item name="android:windowBackground">@color/darkBackground</item>
         <item name="android:textColor">#FFF</item>
-        <item name="android:backgroundTint">@color/darkPrimary</item>
         <item name="fontFamily">@font/roboto</item>
     </style>
 
