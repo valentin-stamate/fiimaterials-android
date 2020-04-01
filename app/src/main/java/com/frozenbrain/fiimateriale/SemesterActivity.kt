@@ -1,24 +1,26 @@
 package com.frozenbrain.fiimateriale
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.frozenbrain.fiimateriale.RecyclerView.OnItemClickListener
 import com.frozenbrain.fiimateriale.RecyclerView.RecyclerViewAdapter
-import com.frozenbrain.fiimateriale.RecyclerView.RecyclerViewItem
 import com.frozenbrain.fiimateriale.semester.ClassItem
 import com.frozenbrain.fiimateriale.semester.Semester
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_semester.*
 
-class SemesterActivity : AppCompatActivity() {
+class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var db: DatabaseReference
     private lateinit var semester: Semester
-    private lateinit var list: MutableList<RecyclerViewItem>
+    private lateinit var list: MutableList<ClassItem>
+    private lateinit var classReference: SemesterActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,57 +37,57 @@ class SemesterActivity : AppCompatActivity() {
         db = FirebaseDatabase.getInstance().reference.child("Years/${semester.dataURL}")
         list = mutableListOf()
 
+        classReference = this
         getFromDatabase()
 
         recyclerView.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
+
     }
 
     private fun getFromDatabase() {
+
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-
-                for (childItem in dataSnapshot.children) {
-                    //val data = toClassItem(childItem)
-                    val item = RecyclerViewItem(childItem.child("name").value.toString())
-
-                    list.add(item)
-
-                    progressBar.visibility = View.GONE
-                    recyclerView.visibility = View.VISIBLE
-
+                for (courseType in dataSnapshot.children) {
+                    list.add( ClassItem(courseType.key.toString(), "", -1, "", "") )
+                    val ct = courseType.key.toString()
+                    for (childItem in courseType.children) {
+                        val item = toClassItem(childItem)
+                        list.add(item)
+                    }
                 }
 
+                progressBar.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
                 Toast.makeText(baseContext, "Job Done", Toast.LENGTH_LONG).show()
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = RecyclerViewAdapter(list)
+                    adapter = RecyclerViewAdapter(list, classReference)
                 }
 
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w("Blea", "loadPost:onCancelled", databaseError.toException())
-                // [START_EXCLUDE]
-                Toast.makeText(baseContext, "Failed to load post.",
-                    Toast.LENGTH_SHORT).show()
-                // [END_EXCLUDE]
+                Log.w("Error Fetching", "loadPost:onCancelled", databaseError.toException())
+                Toast.makeText(baseContext, "Failed to load classes.", Toast.LENGTH_SHORT).show()
             }
         }
-        (db.child("Compulsory Courses")).addValueEventListener(postListener)
+        db.addValueEventListener(postListener)
     }
 
     private fun toClassItem(childItem: DataSnapshot): ClassItem {
         val name = childItem.child("name").value.toString()
         val short = childItem.child("short").value.toString()
-        val credits = childItem.child("credits").value.toString()
+        val credits = childItem.child("credits").value.toString().toInt()
         val lastUpdated = childItem.child("lastUpdated").value.toString()
         val megaLink = childItem.child("megaLink").value.toString()
 
         return ClassItem(name, short, credits, lastUpdated, megaLink)
     }
 
+    override fun onItemClicked(item: ClassItem) {
+        startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.megaLink)) )
+    }
 
 }

@@ -11,6 +11,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="first_year">First Year</string>
     <string name="semester_title">Semester Title</string>
+    <string name="class_title">Class Title</string>
+    <string name="credits">Credits</string>
+    <string name="section_title">Section Title</string>
 
     <string-array name="query_suggestions">
         <item>Android</item>
