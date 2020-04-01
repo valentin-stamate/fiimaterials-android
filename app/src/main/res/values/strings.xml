@@ -14,6 +14,9 @@
     <string name="class_title">Class Title</string>
     <string name="credits">Credits</string>
     <string name="section_title">Section Title</string>
+    <string name="second_year">Second Year</string>
+    <string name="first_semester">First Semester</string>
+    <string name="second_semester">Second Semester</string>
 
     <string-array name="query_suggestions">
         <item>Android</item>

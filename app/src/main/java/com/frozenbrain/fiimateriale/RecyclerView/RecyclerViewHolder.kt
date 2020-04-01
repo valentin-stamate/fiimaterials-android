@@ -22,7 +22,7 @@ class RecyclerViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerV
 
     fun bind(item: ClassItem, clickListenerOn: OnItemClickListener) {
         if (item.credits != -1) {
-            className?.text = if (item.name.length > 20) item.short else item.name
+            className?.text = if (item.name.length > 25) item.short else item.name
             classCredits?.text = "Credits: ${item.credits}"
         } else {
             itemView.findViewById<CardView>(R.id.itemCardContainer).visibility = View.GONE

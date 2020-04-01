@@ -2,6 +2,7 @@ package com.frozenbrain.fiimateriale
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.frozenbrain.fiimateriale.semester.Semester
 import com.google.firebase.database.DatabaseReference
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var searchView: MaterialSearchView
     lateinit var db: DatabaseReference
+    lateinit var semesterIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +25,24 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setIcon(R.drawable.ic_logo)
 
         db = FirebaseDatabase.getInstance().reference.child("Years")
+        semesterIntent = Intent(this, SemesterActivity::class.java)
+
+        registerListeners()
 
 
+
+    }
+
+    private fun registerListeners() {
         yearOneLeft.setOnClickListener {
-            val intent = Intent(this, SemesterActivity::class.java)
-            intent.putExtra("semester", Semester("First Year", "First Year/First Semester"))
-            startActivity(intent)
+            semesterIntent.putExtra("semester", Semester("First Year", "First Year/First Semester"))
+            startActivity(semesterIntent)
         }
 
+        yearOneRight.setOnClickListener {
+            semesterIntent.putExtra("semester", Semester("First Year", "First Year/Second Semester"))
+            startActivity(semesterIntent)
+        }
     }
 
 }

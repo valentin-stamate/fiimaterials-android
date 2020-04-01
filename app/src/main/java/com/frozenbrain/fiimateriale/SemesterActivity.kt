@@ -14,6 +14,7 @@ import com.frozenbrain.fiimateriale.semester.ClassItem
 import com.frozenbrain.fiimateriale.semester.Semester
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_semester.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -32,7 +33,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         }
 
         semester = intent.getParcelableExtra("semester") as Semester
-        semester_title.text = semester.name
+        toolbar_semester.title = semester.name
 
         db = FirebaseDatabase.getInstance().reference.child("Years/${semester.dataURL}")
         list = mutableListOf()
@@ -87,7 +88,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClicked(item: ClassItem) {
-        startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.megaLink)) )
+       if(item.megaLink.length > 5) startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.megaLink)) )
     }
 
 }
