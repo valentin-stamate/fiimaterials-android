@@ -1,4 +1,4 @@
-package com.frozenbrain.fiimateriale.semester
+package com.frozenbrain.fiimateriale.parcelables
 
 import android.os.Parcel
 import android.os.Parcelable

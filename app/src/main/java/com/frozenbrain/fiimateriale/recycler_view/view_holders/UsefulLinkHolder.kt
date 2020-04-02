@@ -1,0 +1,27 @@
+package com.frozenbrain.fiimateriale.recycler_view.view_holders
+
+import android.view.View
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
+import com.frozenbrain.fiimateriale.R
+import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
+import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
+
+class UsefulLinkHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    private var title: TextView? = null
+
+    init {
+        title = itemView.findViewById(R.id.usefulLinkTitle)
+        //url = itemView.findViewById(R.id.usefulLinkURL)
+    }
+
+    fun bind(item: UsefulLinkItem, clickListenerOn: OnItemClickListener) {
+        title?.text = item.title
+
+        itemView.findViewById<CardView>(R.id.usefulLinkContainer).setOnClickListener {
+            clickListenerOn.onItemClicked( (item) )
+        }
+
+    }
+}

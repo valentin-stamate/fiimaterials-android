@@ -8,13 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.frozenbrain.fiimateriale.RecyclerView.OnItemClickListener
-import com.frozenbrain.fiimateriale.RecyclerView.RecyclerViewAdapter
-import com.frozenbrain.fiimateriale.semester.ClassItem
-import com.frozenbrain.fiimateriale.semester.Semester
+import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
+import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
+import com.frozenbrain.fiimateriale.recycler_view.items.ClassItem
+import com.frozenbrain.fiimateriale.parcelables.Semester
+import com.frozenbrain.fiimateriale.recycler_view.items.Data
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_semester.*
-import kotlinx.android.synthetic.main.toolbar.*
 
 class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -52,7 +52,15 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 for (courseType in dataSnapshot.children) {
-                    list.add( ClassItem(courseType.key.toString(), "", -1, "", "") )
+                    list.add(
+                        ClassItem(
+                            courseType.key.toString(),
+                            "",
+                            -1,
+                            "",
+                            ""
+                        )
+                    )
                     val ct = courseType.key.toString()
                     for (childItem in courseType.children) {
                         val item = toClassItem(childItem)
@@ -62,7 +70,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
                 progressBar.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
-                Toast.makeText(baseContext, "Job Done", Toast.LENGTH_LONG).show()
+
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = RecyclerViewAdapter(list, classReference)
@@ -87,8 +95,9 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         return ClassItem(name, short, credits, lastUpdated, megaLink)
     }
 
-    override fun onItemClicked(item: ClassItem) {
-       if(item.megaLink.length > 5) startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.megaLink)) )
+    override fun onItemClicked(item: Data) {
+        val it = item as ClassItem
+        if(it.megaLink.length > 5) startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)) )
     }
 
 }
