@@ -6,7 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
 import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
-import com.frozenbrain.fiimateriale.recycler_view.items.ClassItem
+import com.frozenbrain.fiimateriale.recycler_view.items.CourseItem
 import com.frozenbrain.fiimateriale.recycler_view.items.Data
 
 class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -20,16 +20,10 @@ class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
         sectionTitle = itemView.findViewById(R.id.sectionTitle)
     }
 
-    fun bind(item: ClassItem, clickListenerOn: OnItemClickListener) {
-        if (item.credits != -1) {
-            className?.text = if (item.name.length > 25) item.short else item.name
-            val text = "Credits: ${item.credits}"
-            classCredits?.text = text
-        } else {
-            itemView.findViewById<CardView>(R.id.itemCardContainer).visibility = View.GONE
-            sectionTitle?.visibility = View.VISIBLE
-            sectionTitle?.text = item.name
-        }
+    fun bind(item: CourseItem, clickListenerOn: OnItemClickListener) {
+        className?.text = if (item.name.length > 30) item.short else item.name
+        val text = "Credits: ${item.credits}"
+        classCredits?.text = text
 
         itemView.findViewById<CardView>(R.id.itemCardContainer).setOnClickListener {
             clickListenerOn.onItemClicked(item as Data)

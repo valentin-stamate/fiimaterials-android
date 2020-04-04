@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
 import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
+import com.frozenbrain.fiimateriale.recycler_view.items.Data
 import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
 
 class UsefulLinkHolder(private val view: View): RecyclerView.ViewHolder(view) {
@@ -13,14 +14,13 @@ class UsefulLinkHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
     init {
         title = itemView.findViewById(R.id.usefulLinkTitle)
-        //url = itemView.findViewById(R.id.usefulLinkURL)
     }
 
     fun bind(item: UsefulLinkItem, clickListenerOn: OnItemClickListener) {
         title?.text = item.title
 
         itemView.findViewById<CardView>(R.id.usefulLinkContainer).setOnClickListener {
-            clickListenerOn.onItemClicked( (item) )
+            clickListenerOn.onItemClicked( item as Data )
         }
 
     }

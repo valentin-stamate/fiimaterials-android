@@ -15,7 +15,7 @@
         android:layout_margin="4dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="6dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/cardBackground"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,35 +49,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/classTitle" />
 
-            <Button
-                android:id="@+id/button"
-                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:visibility="gone"
-
-                app:icon="@drawable/ic_favorite_border_black_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--                TODO Add To Favourites button-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/sectionTitle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:textSize="24sp"
-        android:text="@string/section_title"
-        android:gravity="center"
-        android:visibility="gone"
-        android:translationZ="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

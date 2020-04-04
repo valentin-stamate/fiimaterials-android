@@ -26,4 +26,12 @@
         <item>JavaScript</item>
     </string-array>
 
+<!--    Rate Me Text-->
+    <string name="rate_dialog_title">Rate this app</string>
+    <string name="rate_dialog_message">If you like it I would appreciate if you rate this app, if not, I\'ll be back. Thanks for your support!</string>
+    <string name="rate_dialog_ok">Rate It Now</string>
+    <string name="rate_dialog_cancel">Remind Me Later</string>
+    <string name="rate_dialog_no">No, Thanks</string>
 </resources>
+
+

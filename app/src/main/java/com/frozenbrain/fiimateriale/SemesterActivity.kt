@@ -10,18 +10,22 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
 import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
-import com.frozenbrain.fiimateriale.recycler_view.items.ClassItem
-import com.frozenbrain.fiimateriale.parcelables.Semester
+import com.frozenbrain.fiimateriale.recycler_view.items.CourseItem
 import com.frozenbrain.fiimateriale.recycler_view.items.Data
+import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_semester.*
 
 class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var db: DatabaseReference
-    private lateinit var semester: Semester
-    private lateinit var list: MutableList<ClassItem>
+    private lateinit var list: MutableList<Data>
     private lateinit var classReference: SemesterActivity
+
+    companion object {
+        lateinit var year: String
+        lateinit var semester: String
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +36,13 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
             finish() // TODO FInd a wae to get the item id
         }
 
-        semester = intent.getParcelableExtra("semester") as Semester
-        toolbar_semester.title = semester.name
+        year = intent.getStringExtra("year") as String
+        semester = intent.getStringExtra("semester") as String
+        toolbar_semester.title = year
 
-        db = FirebaseDatabase.getInstance().reference.child("Years/${semester.dataURL}")
+        //reference.child("Years/$year/$semester")
+
+        db = FirebaseDatabase.getInstance().reference.child("Years/$year/$semester")
         list = mutableListOf()
 
         classReference = this
@@ -52,16 +59,9 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 for (courseType in dataSnapshot.children) {
-                    list.add(
-                        ClassItem(
-                            courseType.key.toString(),
-                            "",
-                            -1,
-                            "",
-                            ""
-                        )
-                    )
-                    val ct = courseType.key.toString()
+
+                    list.add( TitleItem(courseType.key.toString()) )
+
                     for (childItem in courseType.children) {
                         val item = toClassItem(childItem)
                         list.add(item)
@@ -85,19 +85,20 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         db.addValueEventListener(postListener)
     }
 
-    private fun toClassItem(childItem: DataSnapshot): ClassItem {
+    private fun toClassItem(childItem: DataSnapshot): CourseItem {
         val name = childItem.child("name").value.toString()
         val short = childItem.child("short").value.toString()
         val credits = childItem.child("credits").value.toString().toInt()
         val lastUpdated = childItem.child("lastUpdated").value.toString()
         val megaLink = childItem.child("megaLink").value.toString()
 
-        return ClassItem(name, short, credits, lastUpdated, megaLink)
+        return CourseItem(name, short, credits, lastUpdated, megaLink)
     }
 
     override fun onItemClicked(item: Data) {
-        val it = item as ClassItem
-        if(it.megaLink.length > 5) startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)) )
+        val it = item as CourseItem
+        if(it.megaLink.length > 5)
+            startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)) )
     }
 
 }
