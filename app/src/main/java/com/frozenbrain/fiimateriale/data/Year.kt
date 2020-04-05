@@ -6,9 +6,9 @@ class Year(val yearTitle: String) {
 
     fun initSem(semester: String, u: Int, s: Int, c: Int, p: Int): Year {
         if (semester == Values.FIRST_SEMESTER)
-            semOne = Semester(Values.FIRST_SEMESTER, "U : $u", "S : $s", "C : $c", p)
+            semOne = Semester(Values.FIRST_SEMESTER, "C : $u", "O : $s", "S : $c", p)
         else
-            semTwo = Semester(Values.SECOND_SEMESTER, "U : $u", "S : $s", "C : $c", p)
+            semTwo = Semester(Values.SECOND_SEMESTER, "C : $u", "O : $s", "S : $c", p)
         return this
     }
 

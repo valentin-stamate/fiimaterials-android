@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/goToSite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:translationZ="@dimen/card_radius"
+        android:onClick="onRightArrowClicked"
+
+        android:src="@drawable/ic_cloud_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/yearsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:rowCount="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yearOneTitle"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_margin="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="3"
+                    android:rowCount="1">
+
+                    <ImageButton
+                        android:id="@+id/leftSwitcher"
+                        android:layout_rowWeight="1"
+                        android:onClick="onLeftArrowClicked"
+                        android:src="@drawable/ic_chevron_left_black_24dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/yearTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_rowWeight="1"
+                        android:text="@string/first_year"
+                        android:textSize="36sp" />
+
+                    <ImageButton
+                        android:id="@+id/rightSwitcher"
+                        android:layout_rowWeight="1"
+                        android:onClick="onRightArrowClicked"
+                        android:src="@drawable/ic_chevron_right_black_24dp"
+                        />
+
+                </GridLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yearOneLeft"
+                android:layout_width="100dp"
+                android:layout_height="102dp"
+                android:layout_margin="16dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:layout_columnWeight="1">
+
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:columnCount="3"
+                    app:layout_constraintTop_toBottomOf="@+id/include"
+                    app:rowCount="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/first_semester"
+                        android:textSize="16sp"
+                        app:layout_columnSpan="3"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semOneU"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="C"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semOneS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="O"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semOneC"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="S"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <ProgressBar
+                        android:id="@+id/semOneP"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:layout_marginTop="0dp"
+                        android:indeterminate="false"
+                        android:progress="60"
+                        app:layout_columnSpan="3"
+                        app:layout_columnWeight="1" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yearOneRight"
+                android:layout_width="100dp"
+                android:layout_height="102dp"
+                android:layout_margin="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:layout_columnWeight="1">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:columnCount="3"
+                    app:layout_constraintTop_toBottomOf="@+id/include"
+                    app:rowCount="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/second_semester"
+                        android:textSize="16sp"
+                        app:layout_columnSpan="3"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semTwoU"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="C"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semTwoS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="O"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/semTwoC"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="S"
+                        android:textSize="16sp"
+                        app:layout_columnWeight="1" />
+
+                    <ProgressBar
+                        android:id="@+id/semTwoP"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:layout_marginTop="0dp"
+                        android:indeterminate="false"
+                        android:progress="70"
+                        app:layout_columnSpan="3"
+                        app:layout_columnWeight="1" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.gridlayout.widget.GridLayout>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/usefulLinkRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearsContainer"
+        tools:listitem="@layout/useful_link_item" />
+
+    <ProgressBar
+        android:id="@+id/progressBarMain"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearsContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

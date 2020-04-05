@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_message"
+            android:icon="@drawable/ic_cloud_black_24dp"
+            android:title="@string/app_name"/>
+
+        <item android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_cloud_black_24dp"
+            android:title="@string/app_name"/>
+
+        <item android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_cloud_black_24dp"
+            android:title="@string/app_name"/>
+
+    </group>
+
+    <item android:title="ljdflsfjds">
+        <menu>
+            <item android:id="@+id/nav_share"
+                android:icon="@drawable/ic_chevron_right_black_24dp"
+                android:title="@string/app_name"/>
+
+            <item android:id="@+id/nav_dsanak"
+                android:icon="@drawable/ic_chevron_right_black_24dp"
+                android:title="@string/app_name"/>
+        </menu>
+    </item>
+
+</menu>

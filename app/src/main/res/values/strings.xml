@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FiiMateriale</string>
+    <string name="app_name">FIIMaterials</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -32,6 +32,10 @@
     <string name="rate_dialog_ok">Rate It Now</string>
     <string name="rate_dialog_cancel">Remind Me Later</string>
     <string name="rate_dialog_no">No, Thanks</string>
+
+    <!--    Navigation Bar-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
 
 

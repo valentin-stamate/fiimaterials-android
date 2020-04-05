@@ -17,7 +17,7 @@
         android:focusable="true"
         app:cardCornerRadius="6dp"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/cardBackground"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
