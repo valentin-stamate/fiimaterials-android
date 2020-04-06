@@ -4,34 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/goToSite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:translationZ="@dimen/card_radius"
-        android:onClick="onRightArrowClicked"
-
-        android:src="@drawable/ic_cloud_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".fragment.MainFragment">
 
     <LinearLayout
         android:id="@+id/yearsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
@@ -60,25 +40,21 @@
                     <ImageButton
                         android:id="@+id/leftSwitcher"
                         android:layout_rowWeight="1"
-                        android:onClick="onLeftArrowClicked"
-                        android:src="@drawable/ic_chevron_left_black_24dp"
-                        />
+                        android:src="@drawable/ic_chevron_left_black_24dp" />
 
                     <TextView
                         android:id="@+id/yearTitle"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
                         android:text="@string/first_year"
                         android:textSize="36sp" />
 
                     <ImageButton
                         android:id="@+id/rightSwitcher"
                         android:layout_rowWeight="1"
-                        android:onClick="onRightArrowClicked"
-                        android:src="@drawable/ic_chevron_right_black_24dp"
-                        />
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
 
                 </GridLayout>
 
@@ -231,7 +207,6 @@
         </androidx.gridlayout.widget.GridLayout>
 
     </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/usefulLinkRecycler"
