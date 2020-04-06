@@ -9,8 +9,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,8 +23,6 @@
 
     </LinearLayout>
 
-
-    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -34,6 +30,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
-
+        app:menu="@menu/menu_drawer"/>
 </androidx.drawerlayout.widget.DrawerLayout>

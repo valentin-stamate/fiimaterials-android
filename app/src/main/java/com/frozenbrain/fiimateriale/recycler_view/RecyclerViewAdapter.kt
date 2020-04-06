@@ -1,6 +1,5 @@
 package com.frozenbrain.fiimateriale.recycler_view
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +17,8 @@ class RecyclerViewAdapter(private val list: List<Data>, private val onItemClickL
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
             Data.TYPE_CLASS       -> ClassViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.class_item, parent, false))
-            Data.TYPE_USEFUL_LINK -> UsefulLinkHolder(LayoutInflater.from(parent.context).inflate(R.layout.useful_link_item, parent, false))
-            else                  ->  TitleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false))
+            Data.TYPE_USEFUL_LINK -> UsefulLinkHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_useful_link, parent, false))
+            else                  ->  TitleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false))
             // TODO here may be the problem
         }
     }

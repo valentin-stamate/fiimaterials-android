@@ -120,7 +120,6 @@ class MainFragment: Fragment(), OnItemClickListener {
 
                 view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.VISIBLE
                 view?.findViewById<ProgressBar>(R.id.progressBarMain)?.visibility = View.GONE
-                Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
 
             }
             .addOnFailureListener{ exception ->
@@ -130,10 +129,8 @@ class MainFragment: Fragment(), OnItemClickListener {
     }
 
     private fun registerListeners() {
-        Toast.makeText(context, "kasjdnslkdalk", Toast.LENGTH_LONG).show()
-        view?.findViewById<CardView>(R.id.yearOneLeft)?.setOnClickListener {
 
-            Toast.makeText(context, "Open", Toast.LENGTH_LONG).show()
+        view?.findViewById<CardView>(R.id.yearOneLeft)?.setOnClickListener {
 
             semesterIntent.putExtra("year", years[i].yearTitle)
             semesterIntent.putExtra("semester", Values.FIRST_SEMESTER)
@@ -158,7 +155,7 @@ class MainFragment: Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(item: Data) {
-        val it = item as UsefulLinkItem
+        item as UsefulLinkItem
         startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
     }
 

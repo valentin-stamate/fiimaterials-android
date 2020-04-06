@@ -15,9 +15,10 @@
         android:layout_margin="4dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="6dp"
         android:foreground="?android:attr/selectableItemBackground"
-
+        app:cardCornerRadius="2dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/classTitle" />
 
-<!--                TODO Add To Favourites button-->
+            <!--                TODO Add To Favourites button-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
