@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     android:id="@+id/usefulLinkContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +8,7 @@
     android:layout_margin="4dp"
     app:cardElevation="1dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usefulLinkTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,4 +16,4 @@
         android:textSize="18sp"
         android:text="Title" />
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

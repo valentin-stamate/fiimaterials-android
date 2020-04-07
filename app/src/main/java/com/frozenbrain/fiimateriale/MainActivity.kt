@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment()).commit()
+            fragment_title.text = getString(R.string.home)
             // when the device is rotated, but i'm too tired to understand
         }
 
@@ -61,8 +62,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // val currentFragment: NavDestination? = findNavController(R.id.fragment_container).currentDestination
 
         when (item.itemId) {
-            R.id.nav_home -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment()).commit()
-            R.id.nav_instructions -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
+            R.id.nav_home -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment()).commit()
+                fragment_title.text = getString(R.string.home)
+            }
+            R.id.nav_instructions -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
+                fragment_title.text = getString(R.string.how_to_use)
+            }
             R.id.nav_web_version -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://fiimateriale.firebaseapp.com")) )
         }
         drawer.closeDrawer(GravityCompat.START)

@@ -19,22 +19,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-<!--    <style name="DarkTheme"  parent="Theme.AppCompat.Light.NoActionBar">-->
-<!--        <item name="colorPrimary">@color/darkPrimary</item>-->
-<!--        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>-->
-<!--        <item name="colorAccent">@color/colorAccent</item>-->
+    <style name="DarkTheme"  parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="background">@color/darkBackground</item>
+        <item name="backgroundTint">@color/darkPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#EAEAEA</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
-<!--        <item name="background">@color/darkBackground</item>-->
-<!--        <item name="backgroundTint">@color/darkPrimary</item>-->
 
-<!--        <item name="android:gravity">center</item>-->
-
-<!--        <item name="backgroundColor">@color/darkBackground</item>-->
-<!--        <item name="android:windowBackground">@color/darkBackground</item>-->
-<!--        <item name="android:textColor">#EAEAEA</item>-->
-<!--        <item name="fontFamily">@font/roboto</item>-->
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
-<!--    </style>-->
+    </style>
 
 
     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -46,35 +43,5 @@
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
     </style>
-
-
-<!--    <style name="MaterialSearchViewStyle">-->
-<!--        &lt;!&ndash; Background for the search bar &ndash;&gt;-->
-<!--        <item name="searchBackground">@color/darkPrimary</item>-->
-
-<!--        &lt;!&ndash; Change voice icon &ndash;&gt;-->
-<!--        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>-->
-
-<!--        &lt;!&ndash; Change clear text icon &ndash;&gt;-->
-<!--        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>-->
-
-<!--        &lt;!&ndash; Change up icon &ndash;&gt;-->
-<!--        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>-->
-
-<!--        &lt;!&ndash; Change icon for the suggestions &ndash;&gt;-->
-<!--        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>-->
-
-<!--        &lt;!&ndash; Change background for the suggestions list view &ndash;&gt;-->
-<!--        <item name="searchSuggestionBackground">@android:color/white</item>-->
-
-<!--        &lt;!&ndash; Change text color for edit text. This will also be the color of the cursor &ndash;&gt;-->
-<!--        <item name="android:textColor">#FFF</item>-->
-
-<!--        &lt;!&ndash; Change hint text color for edit text &ndash;&gt;-->
-<!--        <item name="android:textColorHint">@color/darkAccent</item>-->
-
-<!--        &lt;!&ndash; Hint for edit text &ndash;&gt;-->
-<!--        <item name="android:hint">@string/search_hint</item>-->
-<!--    </style>-->
 
 </resources>

@@ -23,7 +23,7 @@
             app:layout_constraintTop_toBottomOf="@+id/include"
             app:rowCount="2">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/yearOneTitle"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
@@ -60,9 +60,9 @@
                 </GridLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/yearOneLeft"
                 android:layout_width="100dp"
                 android:layout_height="102dp"
@@ -132,9 +132,9 @@
 
                 </androidx.gridlayout.widget.GridLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/yearOneRight"
                 android:layout_width="100dp"
                 android:layout_height="102dp"
@@ -203,7 +203,7 @@
 
                 </androidx.gridlayout.widget.GridLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </androidx.gridlayout.widget.GridLayout>
 

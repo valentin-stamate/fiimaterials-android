@@ -21,7 +21,7 @@
 <!--            android:icon="@drawable/ic_cloud_black_24dp"-->
 <!--            android:title="@string/faq"/>-->
 
-<!--        <item android:id="@+id/nav_credits"-->
+<!--        <item android:id="@+id/nav_hall_of_fame"-->
 <!--            android:icon="@drawable/ic_cloud_black_24dp"-->
 <!--            android:title="@string/credits"/>-->
 
@@ -29,9 +29,9 @@
 <!--            android:icon="@drawable/ic_cloud_black_24dp"-->
 <!--            android:title="@string/about"/>-->
 
-<!--        <item android:id="@+id/nav_contact"-->
-<!--            android:icon="@drawable/ic_cloud_black_24dp"-->
-<!--            android:title="@string/contact"/>-->
+        <item android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_cloud_black_24dp"
+            android:title="@string/contact_feedback"/>
 
     </group>
 
