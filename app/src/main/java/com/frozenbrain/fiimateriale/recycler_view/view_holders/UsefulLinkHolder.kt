@@ -13,15 +13,14 @@ class UsefulLinkHolder(private val view: View): RecyclerView.ViewHolder(view) {
     private var title: TextView? = null
 
     init {
-        title = itemView.findViewById(R.id.usefulLinkTitle)
+        title = view.findViewById(R.id.usefulLinkTitle)
     }
 
     fun bind(item: UsefulLinkItem, clickListenerOn: OnItemClickListener) {
         title?.text = item.title
 
-        itemView.findViewById<CardView>(R.id.usefulLinkContainer).setOnClickListener {
+        view.findViewById<CardView>(R.id.usefulLinkContainer).setOnClickListener {
             clickListenerOn.onItemClicked( item as Data )
         }
-
     }
 }

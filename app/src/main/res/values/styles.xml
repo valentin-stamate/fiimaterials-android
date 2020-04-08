@@ -26,10 +26,9 @@
         <item name="background">@color/darkBackground</item>
         <item name="backgroundTint">@color/darkPrimary</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">#EAEAEA</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-
+        <item name="android:textColor">#F3F3F3</item>
 
     </style>
 

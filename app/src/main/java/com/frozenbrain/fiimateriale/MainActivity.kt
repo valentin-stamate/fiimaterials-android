@@ -8,11 +8,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.fragment.HowToUseFragment
 import com.frozenbrain.fiimateriale.fragment.MainFragment
-import com.frozenbrain.fiimateriale.fragment.SecondFragment
+import com.frozenbrain.fiimateriale.fragment.TestFragment
 import com.google.android.material.navigation.NavigationView
 import hotchemi.android.rate.AppRate
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     companion object {
         private lateinit var drawer: DrawerLayout
+        private const val newWordActivityRequestCode = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +58,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // when the device is rotated, but i'm too tired to understand
         }
 
+//        ROOM TEST
+
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -70,6 +83,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
                 fragment_title.text = getString(R.string.how_to_use)
             }
+//            R.id.nav_test -> {
+//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TestFragment()).commit()
+//                fragment_title.text = getString(R.string.testing_mode)
+//            }
             R.id.nav_web_version -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://fiimateriale.firebaseapp.com")) )
         }
         drawer.closeDrawer(GravityCompat.START)
