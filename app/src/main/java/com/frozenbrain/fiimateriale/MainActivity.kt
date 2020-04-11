@@ -83,6 +83,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
                 fragment_title.text = getString(R.string.how_to_use)
             }
+            R.id.nav_contact -> {
+                startActivity( Intent(this, FeedbackActivity::class.java) )
+            }
 //            R.id.nav_test -> {
 //                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TestFragment()).commit()
 //                fragment_title.text = getString(R.string.testing_mode)

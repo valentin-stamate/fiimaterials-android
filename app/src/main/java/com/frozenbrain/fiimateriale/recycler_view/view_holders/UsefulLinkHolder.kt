@@ -20,7 +20,7 @@ class UsefulLinkHolder(private val view: View): RecyclerView.ViewHolder(view) {
         title?.text = item.title
 
         view.findViewById<CardView>(R.id.usefulLinkContainer).setOnClickListener {
-            clickListenerOn.onItemClicked( item as Data )
+            clickListenerOn.onItemClicked( item as Data, -1)
         }
     }
 }

@@ -33,7 +33,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
         toolbar_semester.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         toolbar_semester.setNavigationOnClickListener{
-            finish() // TODO FInd a wae to get the item id
+            finish()
         }
 
         year = intent.getStringExtra("year") as String
@@ -91,14 +91,30 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         val credits = childItem.child("credits").value.toString().toInt()
         val lastUpdated = childItem.child("lastUpdated").value.toString()
         val megaLink = childItem.child("megaLink").value.toString()
+        val sitePage = childItem.child("sitePage").value.toString()
+        val sitePassword = childItem.child("sitePassword").value.toString()
 
-        return CourseItem(name, short, credits, lastUpdated, megaLink)
+        return CourseItem(name, short, credits, megaLink, sitePage, sitePassword)
     }
 
-    override fun onItemClicked(item: Data) {
+    override fun onItemClicked(item: Data, type: Int) {
         val it = item as CourseItem
-        if(it.megaLink.length > 5)
-            startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)) )
+        when (type) {
+            0 -> {
+                if (it.megaLink.isNotEmpty()) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)))
+                } else {
+                    Toast.makeText(this, "There is no data for this class..yet", Toast.LENGTH_SHORT).show()
+                }
+            }
+            1 -> {
+                if(it.sitePage.isNotEmpty()) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.sitePage)))
+                    if (item.sitePassword.isNotEmpty())
+                        Toast.makeText(this, item.sitePassword, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
 }

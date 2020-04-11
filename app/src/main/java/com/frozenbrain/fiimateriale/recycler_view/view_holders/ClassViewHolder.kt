@@ -1,6 +1,7 @@
 package com.frozenbrain.fiimateriale.recycler_view.view_holders
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,9 @@ class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private var classCredits: TextView? = null
     private var sectionTitle: TextView? = null
 
+    private val TYPE_PARENT: Int = 0
+    private val TYPE_SITE_PAGE: Int = 1
+
     init {
         className = itemView.findViewById(R.id.classTitle)
         classCredits = itemView.findViewById(R.id.classCredits)
@@ -26,8 +30,16 @@ class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
         classCredits?.text = text
 
         itemView.findViewById<CardView>(R.id.itemCardContainer).setOnClickListener {
-            clickListenerOn.onItemClicked(item as Data)
+            clickListenerOn.onItemClicked(item as Data, TYPE_PARENT)
             // TODO think of another workflow
+        }
+
+        if (item.sitePage.isNotEmpty()) {
+            itemView.findViewById<ImageView>(R.id.image_button_site_page).setOnClickListener {
+                clickListenerOn.onItemClicked(item as Data, TYPE_SITE_PAGE)
+            }
+        } else {
+            itemView.findViewById<ImageView>(R.id.image_button_site_page).visibility = View.GONE
         }
 
     }

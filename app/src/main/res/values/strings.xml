@@ -26,7 +26,7 @@
         <item>JavaScript</item>
     </string-array>
 
-<!--    Rate Me Text-->
+    <!--    Rate Me Text-->
     <string name="rate_dialog_title">Rate this app</string>
     <string name="rate_dialog_message">If you like it I would appreciate if you rate this app, if not, I\'ll be back. Thanks for your support!</string>
     <string name="rate_dialog_ok">Rate It Now</string>
@@ -38,7 +38,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="home">Home</string>
     <string name="tips">Tips</string>
-<!--    <string name="credits">Credits</string>-->
+    <!--    <string name="credits">Credits</string>-->
     <string name="faq">FAQ</string>
     <string name="what_tf_is_this">What tf is this?</string>
     <string name="about">About</string>

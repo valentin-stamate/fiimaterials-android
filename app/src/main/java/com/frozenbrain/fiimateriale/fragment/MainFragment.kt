@@ -22,6 +22,7 @@ import com.frozenbrain.fiimateriale.recycler_view.items.Data
 import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
 import com.google.firebase.firestore.FirebaseFirestore
 import hotchemi.android.rate.AppRate
+import java.lang.Exception
 
 class MainFragment: Fragment(), OnItemClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -154,9 +155,13 @@ class MainFragment: Fragment(), OnItemClickListener {
 
     }
 
-    override fun onItemClicked(item: Data) {
+    override fun onItemClicked(item: Data, type: Int) {
         item as UsefulLinkItem
-        startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
+        try {
+            startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
+        } catch (e: Exception) {
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun onLeftArrowClicked() {
