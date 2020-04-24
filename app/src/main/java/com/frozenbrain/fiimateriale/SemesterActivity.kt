@@ -100,19 +100,13 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
     override fun onItemClicked(item: Data, type: Int) {
         val it = item as CourseItem
         when (type) {
-            0 -> {
-                if (it.megaLink.isNotEmpty()) {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)))
-                } else {
-                    Toast.makeText(this, "There is no data for this class..yet", Toast.LENGTH_SHORT).show()
-                }
+            2 -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.megaLink)))
             }
             1 -> {
-                if(it.sitePage.isNotEmpty()) {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.sitePage)))
-                    if (item.sitePassword.isNotEmpty())
-                        Toast.makeText(this, item.sitePassword, Toast.LENGTH_LONG).show()
-                }
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.sitePage)))
+                if (item.sitePassword.isNotEmpty())
+                    Toast.makeText(this, item.sitePassword, Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -8,13 +8,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.fragment.HowToUseFragment
 import com.frozenbrain.fiimateriale.fragment.MainFragment
-import com.frozenbrain.fiimateriale.fragment.TestFragment
 import com.google.android.material.navigation.NavigationView
 import hotchemi.android.rate.AppRate
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,7 +32,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-
 
         // TODO Later implement it by yourself
         AppRate.with(this)

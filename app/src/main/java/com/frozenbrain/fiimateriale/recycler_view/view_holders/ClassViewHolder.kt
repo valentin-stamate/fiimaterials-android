@@ -17,6 +17,7 @@ class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     private val TYPE_PARENT: Int = 0
     private val TYPE_SITE_PAGE: Int = 1
+    private val TYPE_MEGA = 2
 
     init {
         className = itemView.findViewById(R.id.classTitle)
@@ -29,9 +30,13 @@ class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val text = "Credits: ${item.credits}"
         classCredits?.text = text
 
-        itemView.findViewById<CardView>(R.id.itemCardContainer).setOnClickListener {
-            clickListenerOn.onItemClicked(item as Data, TYPE_PARENT)
-            // TODO think of another workflow
+
+        if (item.megaLink.isNotEmpty()) {
+            itemView.findViewById<ImageView>(R.id.image_button_mega).setOnClickListener {
+                clickListenerOn.onItemClicked(item as Data, TYPE_MEGA)
+            }
+        } else {
+            itemView.findViewById<ImageView>(R.id.image_button_mega).visibility = View.GONE
         }
 
         if (item.sitePage.isNotEmpty()) {
