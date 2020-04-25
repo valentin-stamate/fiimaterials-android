@@ -14,7 +14,6 @@ import com.google.android.material.navigation.NavigationView
 import hotchemi.android.rate.AppRate
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.net.URI
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -77,6 +76,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment_title.text = getString(R.string.how_to_use)
             }
             R.id.nav_contact -> startActivity( Intent(this, FeedbackActivity::class.java) )
+            R.id.nav_about -> startActivity( Intent(this, AboutActivity::class.java) )
+            R.id.nav_hall_of_fame -> startActivity( Intent(this, HallOfFameActivity::class.java) )
+
             R.id.nav_external_web -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/3auIA6Y")) )
             R.id.nav_external_madalina -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/2VXdfV3")) )
         }

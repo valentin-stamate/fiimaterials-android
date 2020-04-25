@@ -44,13 +44,17 @@
     <string name="about">About</string>
     <string name="contact">Contact</string>
     <string name="external">External</string>
-    <string name="fiimaterials_web">FIIMaterials WEB</string>
+    <string name="fiimaterials_web">FII Materials Website</string>
     <string name="how_to_use">How to use</string>
     <string name="contact_feedback"><![CDATA[Contact & Feedback]]></string>
     <string name="fragment_title">Fragment Title</string>
     <string name="instruction_details"><![CDATA[If you got stuck trying to figure out what this app is all about, then this illustration will help you understand how it works.\n \"Art is not what you see\"]]></string>
     <string name="testing_mode">Testing Mode</string>
-    <string name="madalina_cusutura">Madalina Cusutura GDrive</string>
+    <string name="madalina_cusutura">Madalina Cusutura\'s Materials</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="hall_of_fame">Hall Of Fame</string>
+    <string name="role">Role</string>
 </resources>
 
 

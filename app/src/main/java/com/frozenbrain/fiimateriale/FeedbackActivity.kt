@@ -9,11 +9,12 @@ import com.frozenbrain.fiimateriale.data.Feedback
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feedback.*
 
 class FeedbackActivity : AppCompatActivity() {
 
-    lateinit var db: DatabaseReference
+    lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +24,7 @@ class FeedbackActivity : AppCompatActivity() {
             finish()
         }
 
-        db = FirebaseDatabase.getInstance().reference.child("Feedback")
+        db = FirebaseFirestore.getInstance()
 
         feedback_sent.setOnClickListener {
             sentFeedback()
@@ -48,15 +49,13 @@ class FeedbackActivity : AppCompatActivity() {
 
         val contextView: View = findViewById(R.id.feedback_container)
         if (subject.length > 3 && message.length > 10) {
-            val fb = Feedback(name, subject, message)
+            val fb = Feedback(name, subject, message, false)
 
-            db.child(generateRandomPassword()).setValue(fb)
-                .addOnSuccessListener {
-                    Snackbar.make(contextView, "Feedback sent", Snackbar.LENGTH_LONG).show()
-                }
-                .addOnFailureListener {
-                    Snackbar.make(contextView, "Failure", Snackbar.LENGTH_LONG).show()
-                }
+            db.collection("Feedback").add(fb).addOnSuccessListener {
+                Snackbar.make(contextView, "Feedback sent", Snackbar.LENGTH_LONG).show()
+            }.addOnFailureListener {
+                Snackbar.make(contextView, "Failure", Snackbar.LENGTH_LONG).show()
+            }
 
         } else {
             Snackbar.make(contextView, "Well, show me a real feedback", Snackbar.LENGTH_LONG).show()

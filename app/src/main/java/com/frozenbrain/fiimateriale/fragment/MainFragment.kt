@@ -93,7 +93,6 @@ class MainFragment: Fragment(), OnItemClickListener {
 
     }
 
-
     private fun initYears() {
         years.add(Year(Values.FIRST_YEAR))
         years.add(Year(Values.SECOND_YEAR))
@@ -121,7 +120,6 @@ class MainFragment: Fragment(), OnItemClickListener {
             }
         }
         db.addValueEventListener(postListener)
-
     }
 
     private fun toUsefulLinkItem(childItem: DataSnapshot): UsefulLinkItem {
@@ -169,12 +167,7 @@ class MainFragment: Fragment(), OnItemClickListener {
 
     override fun onItemClicked(item: Data, type: Int) {
         item as UsefulLinkItem
-        try {
-            Toast.makeText(context, "" + Uri.parse(item.link), Toast.LENGTH_SHORT).show()
-            // startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
-        } catch (e: Exception) {
-            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-        }
+        startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
     }
 
     private fun onLeftArrowClicked() {

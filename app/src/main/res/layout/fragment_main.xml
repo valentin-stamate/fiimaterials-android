@@ -81,7 +81,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:columnCount="3"
-                    app:layout_constraintTop_toBottomOf="@+id/include"
                     app:rowCount="2">
 
                     <TextView
