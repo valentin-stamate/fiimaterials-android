@@ -40,7 +40,6 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         semester = intent.getStringExtra("semester") as String
         toolbar_semester.title = year
 
-        //reference.child("Years/$year/$semester")
 
         db = FirebaseDatabase.getInstance().reference.child("Years/$year/$semester")
         list = mutableListOf()
@@ -89,7 +88,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         val name = childItem.child("name").value.toString()
         val short = childItem.child("short").value.toString()
         val credits = childItem.child("credits").value.toString().toInt()
-        val lastUpdated = childItem.child("lastUpdated").value.toString()
+        // val lastUpdated = childItem.child("lastUpdated").value.toString()
         val megaLink = childItem.child("megaLink").value.toString()
         val sitePage = childItem.child("sitePage").value.toString()
         val sitePassword = childItem.child("sitePassword").value.toString()

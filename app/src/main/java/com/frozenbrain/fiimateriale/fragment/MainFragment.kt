@@ -19,9 +19,11 @@ import com.frozenbrain.fiimateriale.data.Year
 import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
 import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
 import com.frozenbrain.fiimateriale.recycler_view.items.Data
+import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
 import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.*
 import hotchemi.android.rate.AppRate
+import kotlinx.android.synthetic.main.activity_semester.*
 import java.lang.Exception
 
 class MainFragment: Fragment(), OnItemClickListener {
@@ -30,31 +32,27 @@ class MainFragment: Fragment(), OnItemClickListener {
     }
 
     companion object {
-        lateinit var db: FirebaseFirestore
+        lateinit var db: DatabaseReference
         lateinit var semesterIntent: Intent
-        lateinit var usefulLinks: MutableList<Data>
+        lateinit var usefulLinkList: MutableList<Data>
         private lateinit var years: MutableList<Year>
         private var i: Int = 0
+        private lateinit var reference: MainFragment
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        db = FirebaseFirestore.getInstance()
+        db = FirebaseDatabase.getInstance().reference.child("Useful Links")
         semesterIntent = Intent(context, SemesterActivity::class.java)
 
-        usefulLinks = mutableListOf()
+        usefulLinkList = mutableListOf()
         years = mutableListOf()
 
 
         view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.GONE
 
-        db = FirebaseFirestore.getInstance()
         semesterIntent = Intent(context, SemesterActivity::class.java)
-
-        usefulLinks = mutableListOf()
-        years = mutableListOf()
-
 
         // TODO Later implement it by yourself
         AppRate.with(view?.context)
@@ -63,6 +61,8 @@ class MainFragment: Fragment(), OnItemClickListener {
             .setRemindInterval(3)
             .monitor()
         AppRate.showRateDialogIfMeetsConditions(activity)
+
+        reference = this
 
         initYears()
         changeLayoutYear(i)
@@ -106,27 +106,39 @@ class MainFragment: Fragment(), OnItemClickListener {
     }
 
     private fun fetchData() {
-        db.collection("Useful Links").get()
-            .addOnSuccessListener { querySnapshot ->
-                val listArray = querySnapshot.toObjects(UsefulLinkItem::class.java)
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                for (itemL in listArray) {
-                    usefulLinks.add(itemL as UsefulLinkItem)
+                for (linkItem in dataSnapshot.children) {
+                    val item = toUsefulLinkItem(linkItem)
+                    usefulLinkList.add(item)
                 }
-
-                view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = RecyclerViewAdapter(usefulLinks, this@MainFragment)
-                }
-
-                view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.VISIBLE
-                view?.findViewById<ProgressBar>(R.id.progressBarMain)?.visibility = View.GONE
-
+                onRecyclerViewInit()
             }
-            .addOnFailureListener{ exception ->
-                Log.d("TAG", "Failure fetching useful links", exception)
-                Toast.makeText(context, "Fail to load links", Toast.LENGTH_LONG).show()
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("Error Fetching", "loadPost:onCancelled", databaseError.toException())
+                Toast.makeText(context, "Failed to load classes.", Toast.LENGTH_SHORT).show()
             }
+        }
+        db.addValueEventListener(postListener)
+
+    }
+
+    private fun toUsefulLinkItem(childItem: DataSnapshot): UsefulLinkItem {
+        val title = childItem.child("title").value.toString()
+        val link = childItem.child("link").value.toString()
+
+        return UsefulLinkItem(title, link)
+    }
+
+    private fun onRecyclerViewInit() {
+        view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = RecyclerViewAdapter(usefulLinkList, reference)
+        }
+
+        view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.VISIBLE
+        view?.findViewById<ProgressBar>(R.id.progressBarMain)?.visibility = View.GONE
     }
 
     private fun registerListeners() {
@@ -158,7 +170,8 @@ class MainFragment: Fragment(), OnItemClickListener {
     override fun onItemClicked(item: Data, type: Int) {
         item as UsefulLinkItem
         try {
-            startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
+            Toast.makeText(context, "" + Uri.parse(item.link), Toast.LENGTH_SHORT).show()
+            // startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
         } catch (e: Exception) {
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }

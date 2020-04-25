@@ -41,7 +41,10 @@
 
     <item android:title="@string/external">
         <menu>
-            <item android:id="@+id/nav_web_version"
+            <item android:id="@+id/nav_external_madalina"
+                android:icon="@drawable/ic_chevron_right_black_24dp"
+                android:title="@string/madalina_cusutura"/>
+            <item android:id="@+id/nav_external_web"
                 android:icon="@drawable/ic_chevron_right_black_24dp"
                 android:title="@string/fiimaterials_web"/>
         </menu>

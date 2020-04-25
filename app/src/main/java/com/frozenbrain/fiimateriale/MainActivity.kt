@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import hotchemi.android.rate.AppRate
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import java.net.URI
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,8 +66,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // TODO later check for current fragment
-        // val currentFragment: NavDestination? = findNavController(R.id.fragment_container).currentDestination
 
         when (item.itemId) {
             R.id.nav_home -> {
@@ -77,14 +76,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
                 fragment_title.text = getString(R.string.how_to_use)
             }
-            R.id.nav_contact -> {
-                startActivity( Intent(this, FeedbackActivity::class.java) )
-            }
-//            R.id.nav_test -> {
-//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TestFragment()).commit()
-//                fragment_title.text = getString(R.string.testing_mode)
-//            }
-            R.id.nav_web_version -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://fiimateriale.firebaseapp.com")) )
+            R.id.nav_contact -> startActivity( Intent(this, FeedbackActivity::class.java) )
+            R.id.nav_external_web -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/3auIA6Y")) )
+            R.id.nav_external_madalina -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/2VXdfV3")) )
         }
         drawer.closeDrawer(GravityCompat.START)
 
