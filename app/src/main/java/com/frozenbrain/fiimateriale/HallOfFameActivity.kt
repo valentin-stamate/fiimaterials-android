@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.frozenbrain.fiimateriale.item.HofPerson
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_feedback.*
 import kotlinx.android.synthetic.main.activity_feedback.toolbar_feedback
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_hall_of_fame.*
 class HallOfFameActivity : AppCompatActivity() {
 
     private lateinit var db: DatabaseReference
-    private lateinit var list: MutableList<Person>
+    private lateinit var list: MutableList<HofPerson>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class HallOfFameActivity : AppCompatActivity() {
         db.addValueEventListener(postListener)
     }
 
-    private fun onDataInit(list: MutableList<Person>) {
+    private fun onDataInit(list: MutableList<HofPerson>) {
         // TODO, :::: Recycler View
         Glide.with(this).load(list[0].imageLink).into(hof_legendImage)
         hof_legendName.text = list[0].name
@@ -82,15 +83,13 @@ class HallOfFameActivity : AppCompatActivity() {
 
     }
 
-    private fun toPersonItem(snapshot: DataSnapshot): HallOfFameActivity.Person {
+    private fun toPersonItem(snapshot: DataSnapshot): HofPerson {
         val name = snapshot.child("title").value.toString()
         val body = snapshot.child("body").value.toString()
         val role = "Role: " + snapshot.child("role").value.toString()
         val imageLink = snapshot.child("avatarLink").value.toString()
         val link = snapshot.child("link").value.toString()
-        return Person(name, body, role, imageLink, link)
+        return HofPerson(name, body, role, imageLink, link)
     }
-
-    data class Person(val name: String, val body: String, val role: String, val imageLink: String, val link: String)
 
 }

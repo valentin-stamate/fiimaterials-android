@@ -10,6 +10,11 @@
         <item name="cardElevation">1dp</item>
     </style>
 
+    <style name="LaunchScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimaryDark">#1D2633</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.frozenbrain.fiimateriale.item.AboutDataItem
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_about.*
 
@@ -28,7 +29,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun fetchData() {
-        val contentList = mutableListOf<ContentItem>()
+        val contentList = mutableListOf<AboutDataItem>()
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -46,13 +47,13 @@ class AboutActivity : AppCompatActivity() {
         db.addValueEventListener(postListener)
     }
 
-    private fun toContentItem(snapshot: DataSnapshot): ContentItem {
+    private fun toContentItem(snapshot: DataSnapshot): AboutDataItem {
         val title = snapshot.child("title").value.toString()
         val body = snapshot.child("body").value.toString()
-        return ContentItem(title, body)
+        return AboutDataItem(title, body)
     }
 
-    private fun onInitData(list: MutableList<ContentItem>) {
+    private fun onInitData(list: MutableList<AboutDataItem>) {
 
         about_first_title.text = list[0].title
         about_first_body.text = list[0].body
@@ -65,7 +66,4 @@ class AboutActivity : AppCompatActivity() {
         about_scrollView.visibility = View.VISIBLE
 
     }
-
-    data class ContentItem(val title: String, val body: String)
-
 }
