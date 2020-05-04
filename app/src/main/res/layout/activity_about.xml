@@ -31,68 +31,75 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/about_first_title"
-                style="@style/header"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title" />
+                android:padding="16dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/about_first_body"
-                style="@style/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/body" />
+                <TextView
+                    android:id="@+id/about_first_title"
+                    style="@style/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title" />
 
-
-            <TextView
-                android:id="@+id/about_second_title"
-                style="@style/header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title" />
-
-            <TextView
-                android:id="@+id/about_second_body"
-                style="@style/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/body" />
+                <TextView
+                    android:id="@+id/about_first_body"
+                    style="@style/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/body" />
 
 
-            <TextView
-                android:id="@+id/about_third_title"
-                style="@style/header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title" />
+                <TextView
+                    android:id="@+id/about_second_title"
+                    style="@style/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_gravity="start"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/about_second_body"
+                    style="@style/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/body" />
 
-                <LinearLayout
+
+                <TextView
+                    android:id="@+id/about_third_title"
+                    style="@style/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/about_MeImageView"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/about_MeImageView"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"/>
 
-            </com.google.android.material.card.MaterialCardView>
-            <TextView
-                android:id="@+id/about_third_body"
-                style="@style/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/body" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/about_third_body"
+                    style="@style/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/body" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

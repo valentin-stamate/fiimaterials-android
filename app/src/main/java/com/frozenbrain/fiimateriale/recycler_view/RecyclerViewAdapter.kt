@@ -4,22 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
-import com.frozenbrain.fiimateriale.recycler_view.view_holders.ClassViewHolder
-import com.frozenbrain.fiimateriale.recycler_view.items.Data
-import com.frozenbrain.fiimateriale.recycler_view.items.CourseItem
-import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
-import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
-import com.frozenbrain.fiimateriale.recycler_view.view_holders.TitleViewHolder
-import com.frozenbrain.fiimateriale.recycler_view.view_holders.UsefulLinkHolder
+import com.frozenbrain.fiimateriale.data.*
+import com.frozenbrain.fiimateriale.recycler_view.view_holders.*
 
 class RecyclerViewAdapter(private val list: List<Data>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
             Data.TYPE_CLASS       -> ClassViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_class, parent, false))
-            Data.TYPE_USEFUL_LINK -> UsefulLinkHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_useful_link, parent, false))
-            else                  ->  TitleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false))
-            // TODO here may be the problem
+            Data.TYPE_USEFUL_LINK -> UsefulLinkViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_useful_link, parent, false))
+            Data.TYPE_TITLE       -> TitleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false))
+            Data.TYPE_HOF_PERSON  -> HofPersonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_hof_person, parent, false))
+            else                  -> FeedbackListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_feedback, parent, false))
         }
     }
 
@@ -27,9 +23,11 @@ class RecyclerViewAdapter(private val list: List<Data>, private val onItemClickL
         val item: Data = list[position]
 
         when(item.getType()) {
-            Data.TYPE_CLASS -> (holder as ClassViewHolder).bind(item as CourseItem, onItemClickListener)
-            Data.TYPE_USEFUL_LINK -> (holder as UsefulLinkHolder).bind(item as UsefulLinkItem, onItemClickListener)
-            Data.TITLE -> (holder as TitleViewHolder).bind(item as TitleItem)
+            Data.TYPE_CLASS       -> (holder as ClassViewHolder).bind(item as CourseItem, onItemClickListener)
+            Data.TYPE_USEFUL_LINK -> (holder as UsefulLinkViewHolder).bind(item as UsefulLinkItem, onItemClickListener)
+            Data.TYPE_TITLE       -> (holder as TitleViewHolder).bind(item as TitleItem)
+            Data.TYPE_HOF_PERSON  -> (holder as HofPersonViewHolder).bind(item as HofPerson, onItemClickListener)
+            Data.TYPE_FEEDBACK    -> (holder as FeedbackListViewHolder).bind(item as Feedback)
         }
 
     }

@@ -3,58 +3,36 @@ package com.frozenbrain.fiimateriale
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.frozenbrain.fiimateriale.item.AboutDataItem
-import com.google.firebase.database.*
+import com.frozenbrain.fiimateriale.data.AboutDataItem
+import com.frozenbrain.fiimateriale.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseReference
-    private lateinit var ref: AboutActivity
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        ref = this
-        Glide.with(this).load("https://i.postimg.cc/VkKT4ZCw/20200225-175931.jpg").into(about_header_image)
+
+        Glide.with(this).load(R.drawable.ic_about_image).into(about_header_image)
         Glide.with(this).load("https://i.postimg.cc/gj455gT3/320200410-181509-me.jpg").into(about_MeImageView)
-        about_scrollView.visibility = View.GONE
 
-        db = FirebaseDatabase.getInstance().reference.child("Strings/About")
-
-        fetchData()
-    }
-
-    private fun fetchData() {
-        val contentList = mutableListOf<AboutDataItem>()
-
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for (child in dataSnapshot.children) {
-                    val contentItem = toContentItem(child)
-                    contentList.add(contentItem)
-                }
-                onInitData(contentList)
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(ref, "Failed to load data.", Toast.LENGTH_SHORT).show()
-            }
+        viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+        viewModel.onAboutDataListInit()
+        val observer =  Observer<MutableList<AboutDataItem>> {
+            onInitData(it)
         }
-        db.addValueEventListener(postListener)
-    }
+        viewModel.aboutDataList.observe(this, observer)
 
-    private fun toContentItem(snapshot: DataSnapshot): AboutDataItem {
-        val title = snapshot.child("title").value.toString()
-        val body = snapshot.child("body").value.toString()
-        return AboutDataItem(title, body)
     }
 
     private fun onInitData(list: MutableList<AboutDataItem>) {
-
+        // also, a recyclerview for this
         about_first_title.text = list[0].title
         about_first_body.text = list[0].body
         about_second_title.text = list[1].title

@@ -34,7 +34,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_cloud_black_24dp"
+            android:src="@drawable/ic_cloud"
             android:translationZ="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -3,19 +3,17 @@ package com.frozenbrain.fiimateriale.recycler_view.view_holders
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
-import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
-import com.frozenbrain.fiimateriale.recycler_view.items.CourseItem
-import com.frozenbrain.fiimateriale.recycler_view.items.Data
+import com.frozenbrain.fiimateriale.data.OnItemClickListener
+import com.frozenbrain.fiimateriale.data.CourseItem
+import com.frozenbrain.fiimateriale.data.Data
 
 class ClassViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private var className: TextView? = null
     private var classCredits: TextView? = null
     private var sectionTitle: TextView? = null
 
-    private val TYPE_PARENT: Int = 0
     private val TYPE_SITE_PAGE: Int = 1
     private val TYPE_MEGA = 2
 

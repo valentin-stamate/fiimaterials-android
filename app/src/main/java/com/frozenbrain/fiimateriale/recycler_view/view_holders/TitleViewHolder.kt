@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
-import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
+import com.frozenbrain.fiimateriale.data.TitleItem
 
 class TitleViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
     private var sectionTextView: TextView? = null

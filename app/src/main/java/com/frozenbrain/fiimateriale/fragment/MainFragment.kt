@@ -3,56 +3,47 @@ package com.frozenbrain.fiimateriale.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.frozenbrain.fiimateriale.R
 import com.frozenbrain.fiimateriale.SemesterActivity
 import com.frozenbrain.fiimateriale.data.Values
 import com.frozenbrain.fiimateriale.data.Year
-import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
+import com.frozenbrain.fiimateriale.data.OnItemClickListener
 import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
-import com.frozenbrain.fiimateriale.recycler_view.items.Data
-import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
-import com.frozenbrain.fiimateriale.recycler_view.items.UsefulLinkItem
-import com.google.firebase.database.*
+import com.frozenbrain.fiimateriale.data.Data
+import com.frozenbrain.fiimateriale.data.UsefulLinkItem
+import com.frozenbrain.fiimateriale.viewmodel.AppViewModel
 import hotchemi.android.rate.AppRate
-import kotlinx.android.synthetic.main.activity_semester.*
-import java.lang.Exception
 
-class MainFragment: Fragment(), OnItemClickListener {
+class MainFragment: Fragment(),
+    OnItemClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     companion object {
-        lateinit var db: DatabaseReference
-        lateinit var semesterIntent: Intent
-        lateinit var usefulLinkList: MutableList<Data>
+        private lateinit var semesterIntent: Intent
         private lateinit var years: MutableList<Year>
         private var i: Int = 0
         private lateinit var reference: MainFragment
+        private lateinit var viewModel: AppViewModel
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        db = FirebaseDatabase.getInstance().reference.child("Useful Links")
         semesterIntent = Intent(context, SemesterActivity::class.java)
 
-        usefulLinkList = mutableListOf()
         years = mutableListOf()
-
-
-        view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.GONE
-
-        semesterIntent = Intent(context, SemesterActivity::class.java)
 
         // TODO Later implement it by yourself
         AppRate.with(view?.context)
@@ -64,11 +55,16 @@ class MainFragment: Fragment(), OnItemClickListener {
 
         reference = this
 
+        viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+        viewModel.onUsefulLinkListInit()
+        val listObserver = Observer<MutableList<Data>> {
+            onRecyclerViewInit(it)
+        }
+        viewModel.usefulLinkList.observe(viewLifecycleOwner, listObserver)
+
         initYears()
         changeLayoutYear(i)
         registerListeners()
-        fetchData()
-
     }
 
     private fun changeLayoutYear(i: Int) {
@@ -104,39 +100,11 @@ class MainFragment: Fragment(), OnItemClickListener {
         // TODO later use database for fetching these too
     }
 
-    private fun fetchData() {
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for (linkItem in dataSnapshot.children) {
-                    val item = toUsefulLinkItem(linkItem)
-                    usefulLinkList.add(item)
-                }
-                onRecyclerViewInit()
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("Error Fetching", "loadPost:onCancelled", databaseError.toException())
-                Toast.makeText(context, "Failed to load classes.", Toast.LENGTH_SHORT).show()
-            }
-        }
-        db.addValueEventListener(postListener)
-    }
-
-    private fun toUsefulLinkItem(childItem: DataSnapshot): UsefulLinkItem {
-        val title = childItem.child("title").value.toString()
-        val link = childItem.child("link").value.toString()
-
-        return UsefulLinkItem(title, link)
-    }
-
-    private fun onRecyclerViewInit() {
+    private fun onRecyclerViewInit(list: MutableList<Data>) {
         view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = RecyclerViewAdapter(usefulLinkList, reference)
+            adapter = RecyclerViewAdapter(list, reference)
         }
-
-        view?.findViewById<RecyclerView>(R.id.usefulLinkRecycler)?.visibility = View.VISIBLE
-        view?.findViewById<ProgressBar>(R.id.progressBarMain)?.visibility = View.GONE
     }
 
     private fun registerListeners() {

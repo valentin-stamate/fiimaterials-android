@@ -8,15 +8,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.frozenbrain.fiimateriale.recycler_view.OnItemClickListener
+import com.frozenbrain.fiimateriale.data.OnItemClickListener
 import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
-import com.frozenbrain.fiimateriale.recycler_view.items.CourseItem
-import com.frozenbrain.fiimateriale.recycler_view.items.Data
-import com.frozenbrain.fiimateriale.recycler_view.items.TitleItem
+import com.frozenbrain.fiimateriale.data.CourseItem
+import com.frozenbrain.fiimateriale.data.Data
+import com.frozenbrain.fiimateriale.data.TitleItem
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_semester.*
 
-class SemesterActivity : AppCompatActivity(), OnItemClickListener {
+class SemesterActivity : AppCompatActivity(),
+    OnItemClickListener {
 
     private lateinit var db: DatabaseReference
     private lateinit var list: MutableList<Data>
@@ -31,7 +32,7 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_semester)
 
-        toolbar_semester.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar_semester.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar_semester.setNavigationOnClickListener{
             finish()
         }
@@ -59,7 +60,11 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
 
                 for (courseType in dataSnapshot.children) {
 
-                    list.add( TitleItem(courseType.key.toString()) )
+                    list.add(
+                        TitleItem(
+                            courseType.key.toString()
+                        )
+                    )
 
                     for (childItem in courseType.children) {
                         val item = toClassItem(childItem)
@@ -93,7 +98,14 @@ class SemesterActivity : AppCompatActivity(), OnItemClickListener {
         val sitePage = childItem.child("sitePage").value.toString()
         val sitePassword = childItem.child("sitePassword").value.toString()
 
-        return CourseItem(name, short, credits, megaLink, sitePage, sitePassword)
+        return CourseItem(
+            name,
+            short,
+            credits,
+            megaLink,
+            sitePage,
+            sitePassword
+        )
     }
 
     override fun onItemClicked(item: Data, type: Int) {

@@ -4,92 +4,49 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.frozenbrain.fiimateriale.item.HofPerson
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_feedback.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.frozenbrain.fiimateriale.data.Data
+import com.frozenbrain.fiimateriale.data.HofPerson
+import com.frozenbrain.fiimateriale.data.OnItemClickListener
+import com.frozenbrain.fiimateriale.recycler_view.RecyclerViewAdapter
+import com.frozenbrain.fiimateriale.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.activity_feedback.toolbar_feedback
 import kotlinx.android.synthetic.main.activity_hall_of_fame.*
 
-class HallOfFameActivity : AppCompatActivity() {
+class HallOfFameActivity : AppCompatActivity(), OnItemClickListener {
 
-    private lateinit var db: DatabaseReference
-    private lateinit var list: MutableList<HofPerson>
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hall_of_fame)
-        toolbar_feedback.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar_feedback.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar_feedback.setNavigationOnClickListener{
             finish()
         }
 
-        db = FirebaseDatabase.getInstance().reference.child("Strings/Hall Of Fame")
-        list = mutableListOf()
-
-        hof_scrollBar.visibility = View.GONE
-
-        getFromDatabase()
-    }
-
-    private fun getFromDatabase() {
-
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for (childItem in dataSnapshot.children) {
-                    val item = toPersonItem(childItem)
-                    list.add(item)
-                }
-                onDataInit(list)
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Failed to load people.", Toast.LENGTH_SHORT).show()
-            }
-        }
-        db.addValueEventListener(postListener)
-    }
-
-    private fun onDataInit(list: MutableList<HofPerson>) {
-        // TODO, :::: Recycler View
-        Glide.with(this).load(list[0].imageLink).into(hof_legendImage)
-        hof_legendName.text = list[0].name
-        hof_legendBody.text = list[0].body
-        hof_legendRole.text = list[0].role
-        hof_legendLink.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(list[0].link)))
+        val observable = Observer<MutableList<Data>> {
+            onRecyclerViewInit(it)
         }
 
-        Glide.with(this).load(list[1].imageLink).into(hof_valentinImage)
-        hof_valentinName.text = list[1].name
-        hof_valentinBody.text = list[1].body
-        hof_valentinRole.text = list[1].role
-        hof_valentinLink.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(list[1].link)))
-        }
-
-        Glide.with(this).load(list[2].imageLink).into(hof_madalinaImage)
-        hof_madalinaName.text = list[2].name
-        hof_madalinaBody.text = list[2].body
-        hof_madalinaRole.text = list[2].role
-        hof_madalinaLink.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(list[2].link)))
-        }
-
-        hof_progressBar.visibility = View.GONE
-        hof_scrollBar.visibility = View.VISIBLE
+        viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+        viewModel.onHofPersonListInit()
+        viewModel.hofPersonList.observe(this, observable)
 
     }
 
-    private fun toPersonItem(snapshot: DataSnapshot): HofPerson {
-        val name = snapshot.child("title").value.toString()
-        val body = snapshot.child("body").value.toString()
-        val role = "Role: " + snapshot.child("role").value.toString()
-        val imageLink = snapshot.child("avatarLink").value.toString()
-        val link = snapshot.child("link").value.toString()
-        return HofPerson(name, body, role, imageLink, link)
+    private fun onRecyclerViewInit(list: MutableList<Data>) {
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = RecyclerViewAdapter(list, this@HallOfFameActivity)
+        }
+    }
+
+    override fun onItemClicked(item: Data, type: Int) {
+        item as HofPerson
+        startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(item.link)) )
     }
 
 }

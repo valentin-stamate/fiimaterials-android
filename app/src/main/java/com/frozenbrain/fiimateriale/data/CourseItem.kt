@@ -1,4 +1,6 @@
-package com.frozenbrain.fiimateriale.recycler_view.items
+package com.frozenbrain.fiimateriale.data
+
+import com.frozenbrain.fiimateriale.data.Data
 
 class CourseItem(val name: String = "",
                  val short: String = "",

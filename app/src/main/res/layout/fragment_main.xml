@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:columnCount="2"
+            android:padding="@dimen/layout_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include"
@@ -28,8 +29,6 @@
                 android:id="@+id/yearOneTitle"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="32dp"
                 app:layout_columnSpan="2"
                 app:layout_gravity="fill">
 
@@ -42,7 +41,7 @@
                     <ImageButton
                         android:id="@+id/leftSwitcher"
                         android:layout_rowWeight="1"
-                        android:src="@drawable/ic_chevron_left_black_24dp" />
+                        android:src="@drawable/ic_chevron_left" />
 
                     <TextView
                         android:id="@+id/yearTitle"
@@ -56,7 +55,7 @@
                     <ImageButton
                         android:id="@+id/rightSwitcher"
                         android:layout_rowWeight="1"
-                        android:src="@drawable/ic_chevron_right_black_24dp" />
+                        android:src="@drawable/ic_chevron_right" />
 
                 </GridLayout>
 
@@ -67,9 +66,8 @@
                 android:id="@+id/yearOneLeft"
                 android:layout_width="100dp"
                 android:layout_height="102dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:layout_marginRight="6dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -138,9 +136,8 @@
                 android:id="@+id/yearOneRight"
                 android:layout_width="100dp"
                 android:layout_height="102dp"
-                android:layout_margin="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="@dimen/layout_margin"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -213,22 +210,13 @@
         android:id="@+id/usefulLinkRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:minHeight="300dp"
+        android:paddingLeft="@dimen/layout_margin"
+        android:paddingRight="@dimen/layout_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yearsContainer"
         tools:listitem="@layout/item_useful_link" />
-
-    <ProgressBar
-        android:id="@+id/progressBarMain"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yearsContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

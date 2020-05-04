@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FIIMaterials</string>
+    <string name="app_name">FII Materials</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -55,6 +55,9 @@
     <string name="body">Body</string>
     <string name="hall_of_fame">Hall Of Fame</string>
     <string name="role">Role</string>
+    <string name="message">Message</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedback_list">Feedback List</string>
 </resources>
 
 
