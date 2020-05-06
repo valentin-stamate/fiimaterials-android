@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import java.io.IOException
 import java.lang.Exception
 import java.net.SocketTimeoutException
@@ -43,12 +44,35 @@ class FreeRoomsFragment : Fragment() {
         try {
             val doc: Document = Jsoup.connect("https://profs.info.uaic.ro/~orar/globale/sali_libere.html").get()
             var name = ""
-            for (el in doc.select("tr")) {
-                for (tr in el.select("td")) {
-                    val title = tr.select("font").text()
-                    name += (title + " ");
+
+            val bigTable = doc.select("tbody")
+            for (classTable in bigTable.select("td[width=300px]")) {
+                val className = classTable.select("font")
+                var nr = 0;
+                for (classLine in classTable.select("tr")) {
+                    if (nr == 0) {
+                        nr++
+                        continue
+                    }
+                    val lineHour = classLine.text()
+                    nr++
+                    name += (lineHour +  "\n")
                 }
             }
+
+//            for (el in doc.select("tr")) {
+//                for (tr in el.select("td")) {
+//                    val title = tr.select("font").text()
+//                    var nr: Int = 0;
+//                    val ora = tr.select("td").text()
+//                    for(gr in tr.select("td[title=Liberă]")) {
+//                        nr++;
+//                    }
+//                    if (nr != 0) {
+//                        name = name + (title + ora + nr);
+//                    }
+//                }
+//            }
 
             withContext(Main) {
                 fetchHTML(name)
