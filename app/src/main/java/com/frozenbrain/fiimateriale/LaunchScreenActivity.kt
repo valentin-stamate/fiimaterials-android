@@ -70,7 +70,7 @@ class LaunchScreenActivity : AppCompatActivity() {
     // TODO later check internet connection
 
     private suspend fun onCheckFetching() {
-        var rep = 32 // aka 8 seconds
+        var rep = 40 // aka 10 seconds
         while (rep >= 0) {
             delay(250)
             if (Repository.dataFetch == APP_OK_TO_RUN) {

@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:hint="Message"
             app:counterEnabled="true"
-            app:counterMaxLength="150"
+            app:counterMaxLength="200"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1">
 

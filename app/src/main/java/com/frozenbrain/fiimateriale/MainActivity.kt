@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.frozenbrain.fiimateriale.fragment.FreeRoomsFragment
 import com.frozenbrain.fiimateriale.fragment.HowToUseFragment
 import com.frozenbrain.fiimateriale.fragment.MainFragment
 import com.google.android.material.navigation.NavigationView
@@ -75,10 +76,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HowToUseFragment()).commit()
                 fragment_title.text = getString(R.string.how_to_use)
             }
+            R.id.navFreeRooms -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FreeRoomsFragment()).commit()
+                fragment_title.text = getString(R.string.free_rooms)
+            }
+
             R.id.nav_contact -> startActivity( Intent(this, FeedbackActivity::class.java) )
             R.id.nav_about -> startActivity( Intent(this, AboutActivity::class.java) )
             R.id.nav_hall_of_fame -> startActivity( Intent(this, HallOfFameActivity::class.java) )
-
+            
             R.id.nav_external_web -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/3auIA6Y")) )
             R.id.nav_external_madalina -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/2VXdfV3")) )
         }

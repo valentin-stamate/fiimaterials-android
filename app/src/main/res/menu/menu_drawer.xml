@@ -13,6 +13,10 @@
 <!--            android:icon="@drawable/ic_cloud"-->
 <!--            android:title="@string/tips"/>-->
 
+        <item android:id="@+id/navFreeRooms"
+            android:icon="@drawable/ic_phone_android"
+            android:title="@string/free_rooms"/>
+
         <item android:id="@+id/nav_instructions"
             android:icon="@drawable/ic_phone_android"
             android:title="@string/how_to_use"/>
