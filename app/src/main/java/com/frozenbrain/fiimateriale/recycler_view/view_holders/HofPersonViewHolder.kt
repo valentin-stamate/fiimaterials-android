@@ -27,5 +27,4 @@ class HofPersonViewHolder(view: View): RecyclerView.ViewHolder(view) {
             clickListenerOn.onItemClicked(item, Data.TYPE_HOF_PERSON)
         }
     }
-
 }

@@ -3,18 +3,23 @@ package com.frozenbrain.fiimateriale.repository
 import android.app.Person
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.frozenbrain.fiimateriale.FreeRoomsApi
 import com.frozenbrain.fiimateriale.LaunchScreenActivity
 import com.frozenbrain.fiimateriale.data.*
 import com.google.firebase.database.*
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 object Repository {
     private val usefulLinkList: MutableList<Data> = mutableListOf()
     private val aboutDataList: MutableList<AboutDataItem> = mutableListOf()
     private val hofPersonList: MutableList<Data> = mutableListOf()
     private val feedbackPersonList_: MutableList<Data> = mutableListOf()
+    private var freeRoomsList: List<Data> = listOf()
 
     var dataFetch = 0 // yeah, i didn't find any better solution
 
@@ -31,7 +36,6 @@ object Repository {
             }
             override fun onCancelled(p0: DatabaseError) {}
         }
-
 
         databaseReference.addValueEventListener(postListener)
     }
@@ -100,6 +104,15 @@ object Repository {
             }
     }
 
+    suspend fun fetchFreeRoomsList() {
+        var list: List<Data> = listOf()
+        list = FreeRoomsApi.getFreeRooms()
+
+        withContext(Main) {
+            freeRoomsList = list
+        }
+    }
+
     // using coroutines oh yeah
     fun getUsefulLinks(): MutableList<Data> {
         return usefulLinkList
@@ -115,7 +128,9 @@ object Repository {
         liveData.value = feedbackPersonList_
         return liveData
     }
-
+    fun getFreeRoomsList(): List<Data> {
+        return freeRoomsList
+    }
 
     private fun toUsefulLinkItem(childItem: DataSnapshot): UsefulLinkItem {
         val title = childItem.child("title").value.toString()

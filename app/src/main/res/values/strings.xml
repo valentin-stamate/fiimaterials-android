@@ -62,6 +62,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="free_rooms">Free Rooms</string>
+    <string name="class_day">Class Day</string>
+    <string name="room_fail_text">Could not find any free rooms right now, maybe later?</string>
+    <string name="class_hour">Class Hour</string>
 </resources>
 
 

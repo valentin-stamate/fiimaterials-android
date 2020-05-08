@@ -17,6 +17,10 @@ class AppViewModel : ViewModel() {
     val hofPersonList: MutableLiveData<MutableList<Data>> by lazy {
         MutableLiveData<MutableList<Data>>()
     }
+    val freeRoomsList: MutableLiveData<List<Data>> by lazy {
+        MutableLiveData<List<Data>>()
+    }
+
     lateinit var feedbackList: MutableLiveData<MutableList<Data>>
 
     fun onUsefulLinkListInit() {
@@ -33,6 +37,10 @@ class AppViewModel : ViewModel() {
 
     fun onFeedbackListInit() {
         feedbackList = Repository.getFeedbackList()
+    }
+
+    fun onFreeRoomsListInit() {
+        freeRoomsList.value = Repository.getFreeRoomsList()
     }
 
 }

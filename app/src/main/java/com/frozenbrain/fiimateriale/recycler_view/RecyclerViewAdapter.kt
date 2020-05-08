@@ -15,7 +15,8 @@ class RecyclerViewAdapter(private val list: List<Data>, private val onItemClickL
             Data.TYPE_USEFUL_LINK -> UsefulLinkViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_useful_link, parent, false))
             Data.TYPE_TITLE       -> TitleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false))
             Data.TYPE_HOF_PERSON  -> HofPersonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_hof_person, parent, false))
-            else                  -> FeedbackListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_feedback, parent, false))
+            Data.TYPE_FEEDBACK    -> FeedbackListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_feedback, parent, false))
+            else                  -> FreeRoomViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_free_room, parent, false))
         }
     }
 
@@ -28,6 +29,7 @@ class RecyclerViewAdapter(private val list: List<Data>, private val onItemClickL
             Data.TYPE_TITLE       -> (holder as TitleViewHolder).bind(item as TitleItem)
             Data.TYPE_HOF_PERSON  -> (holder as HofPersonViewHolder).bind(item as HofPerson, onItemClickListener)
             Data.TYPE_FEEDBACK    -> (holder as FeedbackListViewHolder).bind(item as Feedback)
+            Data.TYPE_FREE_DAY    -> (holder as FreeRoomViewHolder).bind(item as FreeRoom)
         }
 
     }

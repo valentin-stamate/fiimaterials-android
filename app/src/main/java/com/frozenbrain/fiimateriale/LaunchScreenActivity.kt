@@ -19,6 +19,8 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LaunchScreenActivity : AppCompatActivity() {
 
@@ -62,6 +64,9 @@ class LaunchScreenActivity : AppCompatActivity() {
 
             CoroutineScope(Main).launch {
                 onCheckFetching()
+            }
+            CoroutineScope(IO).launch {
+                repository.fetchFreeRoomsList()
             }
         }
 

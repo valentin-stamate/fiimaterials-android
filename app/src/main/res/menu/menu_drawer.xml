@@ -14,7 +14,7 @@
 <!--            android:title="@string/tips"/>-->
 
         <item android:id="@+id/navFreeRooms"
-            android:icon="@drawable/ic_phone_android"
+            android:icon="@drawable/ic_room"
             android:title="@string/free_rooms"/>
 
         <item android:id="@+id/nav_instructions"

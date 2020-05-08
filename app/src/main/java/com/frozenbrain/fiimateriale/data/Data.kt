@@ -7,6 +7,7 @@ interface Data {
         const val TYPE_TITLE = 2
         const val TYPE_HOF_PERSON = 3
         const val TYPE_FEEDBACK = 4
+        const val TYPE_FREE_DAY = 5
     }
     fun getType(): Int
 }
