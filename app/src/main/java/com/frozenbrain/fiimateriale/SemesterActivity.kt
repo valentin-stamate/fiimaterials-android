@@ -39,7 +39,7 @@ class SemesterActivity : AppCompatActivity(),
 
         year = intent.getStringExtra("year") as String
         semester = intent.getStringExtra("semester") as String
-        toolbar_semester.title = year
+        toolbar_semester.title = ("$year / $semester")
 
 
         db = FirebaseDatabase.getInstance().reference.child("Years/$year/$semester")

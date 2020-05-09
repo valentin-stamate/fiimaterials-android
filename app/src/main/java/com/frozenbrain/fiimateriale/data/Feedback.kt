@@ -8,9 +8,9 @@ import java.util.*
 
 @IgnoreExtraProperties
 class Feedback: Data {
-    lateinit var name: String;
-    lateinit var subject: String
-    lateinit var message: String
+    var name: String = "";
+    var subject: String = ""
+    var message: String = ""
     var timestamp: Timestamp = Timestamp.now()
     var solved: Boolean = false
 

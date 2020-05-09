@@ -18,9 +18,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
-import java.util.*
 
 class LaunchScreenActivity : AppCompatActivity() {
 
@@ -34,7 +31,10 @@ class LaunchScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch_screen)
+
         Glide.with(this).load(R.drawable.ic_launch_screen_bg).into(launchScreenBackground)
+        Glide.with(this).load(R.drawable.ic_logo_fii).into(facultyLogo)
+        Glide.with(this).load(R.drawable.ic_logo_university).into(universityLogo)
 
         db = FirebaseDatabase.getInstance().reference
         dbFirestore = FirebaseFirestore.getInstance()
