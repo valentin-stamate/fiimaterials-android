@@ -81,14 +81,7 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/about_MeImageView"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"/>
-
-                    </LinearLayout>
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.card.MaterialCardView>
                 <TextView

@@ -20,7 +20,6 @@ class AboutActivity : AppCompatActivity() {
 
 
         Glide.with(this).load(R.drawable.ic_about_image).into(about_header_image)
-        Glide.with(this).load("https://i.postimg.cc/gj455gT3/320200410-181509-me.jpg").into(about_MeImageView)
 
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
         viewModel.onAboutDataListInit()

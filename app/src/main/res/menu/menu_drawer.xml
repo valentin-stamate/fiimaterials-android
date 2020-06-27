@@ -25,9 +25,9 @@
 <!--            android:icon="@drawable/ic_cloud"-->
 <!--            android:title="@string/faq"/>-->
 
-        <item android:id="@+id/nav_hall_of_fame"
-            android:icon="@drawable/ic_emoji_events"
-            android:title="@string/hall_of_fame"/>
+<!--        <item android:id="@+id/nav_hall_of_fame"-->
+<!--            android:icon="@drawable/ic_emoji_events"-->
+<!--            android:title="@string/hall_of_fame"/>-->
 
         <item android:id="@+id/nav_about"
             android:icon="@drawable/ic_extension"
@@ -41,9 +41,9 @@
 
     <item android:title="@string/external">
         <menu>
-            <item android:id="@+id/nav_external_madalina"
-                android:icon="@drawable/ic_chevron_right"
-                android:title="@string/madalina_cusutura"/>
+<!--            <item android:id="@+id/nav_external_madalina"-->
+<!--                android:icon="@drawable/ic_chevron_right"-->
+<!--                android:title="@string/madalina_cusutura"/>-->
             <item android:id="@+id/nav_external_web"
                 android:icon="@drawable/ic_chevron_right"
                 android:title="@string/fiimaterials_web"/>

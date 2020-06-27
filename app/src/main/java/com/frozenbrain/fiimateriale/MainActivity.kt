@@ -83,10 +83,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.nav_contact -> startActivity( Intent(this, FeedbackActivity::class.java) )
             R.id.nav_about -> startActivity( Intent(this, AboutActivity::class.java) )
-            R.id.nav_hall_of_fame -> startActivity( Intent(this, HallOfFameActivity::class.java) )
+//            R.id.nav_hall_of_fame -> startActivity( Intent(this, HallOfFameActivity::class.java) )
             
             R.id.nav_external_web -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/3auIA6Y")) )
-            R.id.nav_external_madalina -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/2VXdfV3")) )
+//            R.id.nav_external_madalina -> startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("https://bit.ly/2VXdfV3")) )
         }
         drawer.closeDrawer(GravityCompat.START)
 
