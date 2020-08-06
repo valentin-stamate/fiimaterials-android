@@ -3,7 +3,6 @@ package com.frozenbrain.fiimateriale.repository
 import android.app.Person
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.frozenbrain.fiimateriale.FreeRoomsApi
 import com.frozenbrain.fiimateriale.LaunchScreenActivity
 import com.frozenbrain.fiimateriale.data.*
 import com.google.firebase.database.*
@@ -104,14 +103,14 @@ object Repository {
             }
     }
 
-    suspend fun fetchFreeRoomsList() {
-        var list: List<Data> = listOf()
-        list = FreeRoomsApi.getFreeRooms()
-
-        withContext(Main) {
-            freeRoomsList = list
-        }
-    }
+//    suspend fun fetchFreeRoomsList() {
+//        var list: List<Data> = listOf()
+//        list = FreeRoomsApi.getFreeRooms()
+//
+//        withContext(Main) {
+//            freeRoomsList = list
+//        }
+//    }
 
     // using coroutines oh yeah
     fun getUsefulLinks(): MutableList<Data> {

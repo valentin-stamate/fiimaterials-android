@@ -65,9 +65,9 @@ class LaunchScreenActivity : AppCompatActivity() {
             CoroutineScope(Main).launch {
                 onCheckFetching()
             }
-            CoroutineScope(IO).launch {
-                repository.fetchFreeRoomsList()
-            }
+//            CoroutineScope(IO).launch {
+//                repository.fetchFreeRoomsList()
+//            }
         }
 
     }
