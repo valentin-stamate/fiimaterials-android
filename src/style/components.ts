@@ -10,26 +10,18 @@ export const componentStyle = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    button: {
-        borderRadius: 4,
-        backgroundColor: '#006064',
     },
     header: {
         alignSelf: "stretch",
         height: 400,
-        backgroundColor: '#F0F2FE',
-        borderBottomRightRadius: 64,
     },
     body: {
+        alignSelf: 'stretch',
         padding: 24,
-        paddingBottom: 0,
     },
 });
 
-export const fontStyle = {
+export const fontStyle = StyleSheet.create({
     title: {
         fontSize: 24,
         color: '#1D285D',
@@ -37,4 +29,15 @@ export const fontStyle = {
     bold: {
         fontWeight: 'bold',
     }
-}
+});
+
+export const cardRadius = 16;
+export const elementStyle = StyleSheet.create({
+    card: {
+        borderRadius: cardRadius
+    },
+    button: {
+        borderRadius: 4,
+        backgroundColor: '#006064',
+    },
+});

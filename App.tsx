@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {componentStyle} from './src/style/components';
 import Home from "./src/components/Home";
-import Login from "./src/components/Login";
+import Materials from "./src/components/Materials";
 
 
 const Stack = createStackNavigator();
@@ -17,7 +17,7 @@ function App(props: any) {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name={'Home'} options={{headerShown: false}} component={Home}/>
-                <Stack.Screen name={'Login'} component={Login}/>
+                <Stack.Screen name={'Materials'} options={{headerShown: false}} component={Materials}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
