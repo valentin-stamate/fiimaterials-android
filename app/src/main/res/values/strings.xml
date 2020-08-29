@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FIIMaterials</string>
+
+    <string-array name="introduction_list_title">
+        <item>About The Project</item>
+        <item>All In One</item>
+        <item>It\'s Open Source</item>
+    </string-array>
+    <string-array name="introduction_list_body">
+        <item>This is the new version of FIIMaterials Project. You can easily find recent materials because the project started in 2020. You can also find useful resources and links. There is a rating system for classes and you can make an idea about them.</item>
+        <item>The first year is complete. The purpose is to have all materials here on this site. I try to make the process as easy as possible: one package, Mega for storing the files and a mobile app. Thanks for all who are helping me with these materials.</item>
+        <item>It\'s Open Source\", \"I\'ve decided to make the project public, so if you are curios how this project works you can check the GitHub repositories, I make one for every part of it: frontend, backend, mobile. Right now the project it\'s not open for contributions.</item>
+    </string-array>
+
 </resources>

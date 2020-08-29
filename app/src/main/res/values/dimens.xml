@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_topbar">300dp</dimen>
+    <dimen name="app_padding">24dp</dimen>
+    <dimen name="layout_padding">12dp</dimen>
+</resources>
